@@ -7,8 +7,6 @@ using System.Linq;
 
 public class AutoCreateURPUnLit
 {
-    private static string UnlitShaderPath="";
-
     [MenuItem("Assets/Shader/URP_UnLit")]
     static void CreateUnLitShader()
     {
@@ -18,7 +16,7 @@ public class AutoCreateURPUnLit
         {
             path = Directory.GetParent(path).FullName;
         }
-        Shader shader = Shader.Find("Custom/Unlit");
+        Shader shader = Shader.Find("Custom/Common");
         StreamReader sr = new StreamReader(Path.GetFullPath(AssetDatabase.GetAssetPath(shader)));
         List<string> shaderProgram =new List<string>();
         int index=0;
@@ -42,9 +40,6 @@ public class AutoCreateURPUnLit
         }
         sw.Flush();
         sw.Close();
-        // AssetDatabase.CreateAsset(shader,path);
-        // AssetDatabase.Refresh();
-        //StreamWriter sw = new StreamWriter(path);
-        
+        AssetDatabase.Refresh();
     }
 }
